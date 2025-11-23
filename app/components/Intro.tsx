@@ -82,7 +82,7 @@ const creditsScript: Slide[] = [
     {
         type: 'title',
         text: "Welcome",
-        duration: 2500
+        duration: 6000
     }
 ];
 
