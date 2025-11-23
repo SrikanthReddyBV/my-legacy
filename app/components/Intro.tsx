@@ -11,11 +11,12 @@ type Slide =
 
 // --- 2. YOUR SCRIPT ---
 const creditsScript: Slide[] = [
+    // --- CARD 1: THE NAME (UPDATED) ---
     {
         type: 'title',
-        text: "A Legacy",
-        subtext: "The Digital Archive",
-        duration: 3500
+        text: "Badvel Venkata Srikanth Reddy", // Single line now
+        subtext: "THE DIGITAL LEGACY OF",
+        duration: 8000
     },
     {
         type: 'quote',
@@ -48,14 +49,6 @@ const creditsScript: Slide[] = [
         people: [
             { name: "Badvel Rajeswari", role: "Amma", image: "/images/mom.jpeg" },
             { name: "Badvel Lakshmi Reddy", role: "Nanna", image: "/images/dad.jpeg" },
-        ]
-    },
-    {
-        type: 'faces',
-        title: "To The Government of Andhra Pradesh",
-        duration: 8000,
-        people: [
-            { name: "", role: "", image: "/images/govap.webp" },
         ]
     },
     {
@@ -108,13 +101,9 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
     // Keyboard Listeners
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.code === 'ArrowRight') {
-                navigate('next');
-            } else if (e.code === 'ArrowLeft') {
-                navigate('prev');
-            } else if (e.code === 'Space' || e.code === 'Escape') {
-                onFinish();
-            }
+            if (e.code === 'ArrowRight') navigate('next');
+            else if (e.code === 'ArrowLeft') navigate('prev');
+            else if (e.code === 'Space' || e.code === 'Escape') onFinish();
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -145,26 +134,29 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={index}
-                    // --- CINEMATIC ANIMATION RESTORED (No X movement) ---
+                    // Cinematic Fade Animation
                     initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
-                    transition={{ duration: 1.5, ease: "easeInOut" }} // Slower, deeper transition
-                    // ----------------------------------------------------
-                    className="relative z-10 w-full max-w-5xl flex flex-col items-center justify-center"
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                    className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center"
                 >
 
-                    {/* --- TYPE 1: TITLE CARD --- */}
+                    {/* --- TYPE 1: TITLE CARD (REFINED & SMALLER) --- */}
                     {slide.type === 'title' && (
-                        <div className="text-center space-y-4">
-                            <h1 className="font-serif text-5xl md:text-8xl tracking-[0.2em] uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-500 drop-shadow-2xl">
-                                {slide.text}
-                            </h1>
+                        <div className="text-center flex flex-col items-center justify-center gap-6">
+
+                            {/* SUBTEXT */}
                             {slide.subtext && (
-                                <p className="font-sans text-zinc-500 tracking-[0.5em] uppercase text-xs md:text-sm animate-pulse">
+                                <p className="font-sans text-zinc-500 tracking-[0.4em] uppercase text-[10px] md:text-xs animate-pulse">
                                     {slide.subtext}
                                 </p>
                             )}
+
+                            {/* NAME (Single Line, Smaller, Wider Tracking) */}
+                            <h1 className="font-serif font-bold text-2xl md:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 drop-shadow-xl">
+                                {slide.text}
+                            </h1>
                         </div>
                     )}
 
@@ -241,8 +233,6 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
 
             {/* Navigation Hints / Footer */}
             <div className="absolute bottom-8 w-full flex flex-col items-center gap-2">
-
-                {/* Visual Progress Dots */}
                 <div className="flex gap-2 mb-2">
                     {creditsScript.map((_, i) => (
                         <div
@@ -251,8 +241,6 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                         />
                     ))}
                 </div>
-
-                {/* Controls Text */}
                 <div className="text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex gap-4">
                     <span className="hidden md:inline">← Prev</span>
                     <button onClick={onFinish} className="hover:text-white transition-colors border-b border-transparent hover:border-white">
