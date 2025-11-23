@@ -42,11 +42,19 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'faces',
-        title: "Dedicated To The Giants",
+        title: "Thanks for the Engineering Degree",
         duration: 6000,
         people: [
-            { name: "Alan Turing", role: "The Architect", image: withBase("/images/turing.jpg") },
-            { name: "Grace Hopper", role: "The Visionary", image: withBase("/images/hopper.jpg") },
+            { name: "Y S Rajasekhara Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysr.webp") },
+            { name: "Y S Jaganmohan Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysjagan.jpg") },
+        ]
+    },
+    {
+        type: 'faces',
+        title: "Thanks for the Pension",
+        duration: 6000,
+        people: [
+            { name: "Nara Chandrababu Naidu", role: "Chief Minister of Andhra Pradesh", image: withBase("/images/cbn.jpg") },
         ]
     },
     {

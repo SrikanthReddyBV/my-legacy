@@ -47,12 +47,21 @@ const cinema = [
     { title: "C/o Kancharapalem", author: "Venkatesh Maha", tag: "Reality", takeaway: "God is just a layer. Love strips us naked." },
 ];
 
+// --- UPDATED FAQ SECTION WITH MULTIPLE VIDEOS ---
 const faq = [
     {
         question: "Do you believe in God?",
-        type: "video",
-        url: "https://www.youtube.com/embed/9D05ej8u-gU", // Carl Sagan
-        caption: "The universe is too vast for one story. I believe in the Laws of Physics."
+        type: "video", // Supports multiple videos now
+        videos: [
+            {
+                url: "https://www.youtube.com/embed/9D05ej8u-gU", // Carl Sagan
+                caption: "Perspective: The Pale Blue Dot."
+            },
+            {
+                url: "https://www.youtube.com/embed/MBRqu0YOH14", // Kurzgesagt
+                caption: "Philosophy: Optimistic Nihilism."
+            }
+        ]
     },
     {
         question: "Why this website?",
@@ -125,7 +134,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* 2. THE TIMELINE (New Section) */}
+                {/* 2. THE TIMELINE */}
                 <section className="mb-32 border-t border-stone-900 pt-16">
                     <div className="flex items-center gap-3 mb-10">
                         <History size={18} className="text-stone-600" />
@@ -143,7 +152,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* 3. THE CODE (Principles) */}
+                {/* 3. THE CODE */}
                 <section className="mb-32">
                     <div className="flex items-center gap-3 mb-10">
                         <Shield size={18} className="text-stone-600" />
@@ -158,7 +167,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* 4. THE INPUTS (Books/Movies) */}
+                {/* 4. THE INPUTS */}
                 <section className="mb-32">
                     <div className="flex items-center gap-8 mb-8 border-b border-stone-800 pb-4">
                         <button onClick={() => setActiveTab('books')} className={`flex items-center gap-2 text-xs uppercase tracking-widest transition-colors ${activeTab === 'books' ? 'text-white' : 'text-stone-600 hover:text-stone-400'}`}>
@@ -183,7 +192,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* 5. THE INQUIRY (FAQ - Renamed) */}
+                {/* 5. THE INQUIRY (FAQ - UPDATED) */}
                 <section className="mb-24 border-t border-stone-900 pt-16">
                     <div className="flex items-center gap-3 mb-10">
                         <Terminal size={18} className="text-stone-600" />
@@ -191,29 +200,44 @@ export default function AboutPage() {
                     </div>
 
                     <div className="space-y-4">
-                        {faq.map((item, i) => (
+                        {faq.map((item: any, i) => (
                             <div key={i} className="border border-stone-900 bg-stone-900/20 rounded overflow-hidden">
                                 <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left group hover:bg-stone-900/40 transition-colors">
                                     <span className="font-serif text-xl text-stone-300 group-hover:text-white transition-colors">{item.question}</span>
                                     {openFaq === i ? <Minus size={16} className="text-stone-500" /> : <Plus size={16} className="text-stone-500" />}
                                 </button>
+
                                 <AnimatePresence>
                                     {openFaq === i && (
                                         <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden">
                                             <div className="p-6 pt-0 pl-8">
-                                                {item.type === 'text' ? (
+
+                                                {/* TEXT ANSWER */}
+                                                {item.type === 'text' && (
                                                     <p className="font-serif text-stone-400 italic leading-relaxed">"{item.answer}"</p>
-                                                ) : (
-                                                    <div className="max-w-xl">
-                                                        <div className="aspect-video bg-black border border-stone-800 rounded relative overflow-hidden">
-                                                            <iframe src={item.url} className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700" allowFullScreen />
-                                                        </div>
-                                                        <div className="flex items-center gap-2 mt-3 text-stone-600">
-                                                            <PlayCircle size={12} />
-                                                            <span className="font-mono text-[10px] uppercase tracking-wide">{item.caption}</span>
-                                                        </div>
+                                                )}
+
+                                                {/* VIDEO GALLERY (MULTIPLE VIDEOS) */}
+                                                {item.type === 'video' && item.videos && (
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                        {item.videos.map((vid: any, vIndex: number) => (
+                                                            <div key={vIndex} className="w-full">
+                                                                <div className="aspect-video bg-black border border-stone-800 rounded relative overflow-hidden">
+                                                                    <iframe
+                                                                        src={vid.url}
+                                                                        className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
+                                                                        allowFullScreen
+                                                                    />
+                                                                </div>
+                                                                <div className="flex items-center gap-2 mt-3 text-stone-600">
+                                                                    <PlayCircle size={12} />
+                                                                    <span className="font-mono text-[10px] uppercase tracking-wide">{vid.caption}</span>
+                                                                </div>
+                                                            </div>
+                                                        ))}
                                                     </div>
                                                 )}
+
                                             </div>
                                         </motion.div>
                                     )}
