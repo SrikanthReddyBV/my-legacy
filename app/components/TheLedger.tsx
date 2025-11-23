@@ -7,16 +7,16 @@ const assets = [
     {
         id: 1,
         subject: "THE CATTLE",
-        image: "/images/cow.jpg", // Herd of cows
+        image: "/images/buffalo.jpg", // Herd of buffaloes
         business: "DAIRY & MEAT BUSINESS",
         input: "Grass + Water",
         output: "Milk + Flesh",
-        truth: "The cow does not know it is a business. It thinks you are feeding it out of love."
+        truth: "The buffalo does not know it is a business. It thinks you are feeding it out of love."
     },
     {
         id: 2,
         subject: "THE STUDENT",
-        image: "/images/classroom.jpg", // Kids in rows
+        image: "/images/students.jpg", // Kids in rows
         business: "SCHOOL BUSINESS",
         input: "Uniforms + Books",
         output: "Fees + Grant Aid",

@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Tells Next.js to generate HTML files only
+  output: 'export',
   images: {
-    unoptimized: true, // GitHub Pages doesn't support Next.js Image Optimization
+    unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/legacy-site' : '', // Replace 'legacy-site' with your repo name later
+  // This tells Next.js to serve the site from the /my-legacy subpath
+  basePath: "/my-legacy",
 };
 
 export default nextConfig;
