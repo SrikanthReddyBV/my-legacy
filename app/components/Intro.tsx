@@ -90,13 +90,13 @@ const creditsScript: Slide[] = [
 export default function Intro({ onFinish }: { onFinish: () => void }) {
     const [index, setIndex] = useState(0);
 
-    // Helper function to handle direction logic
+    // Logic to move Forward/Backward
     const navigate = useCallback((direction: 'next' | 'prev') => {
         if (direction === 'next') {
             if (index < creditsScript.length - 1) {
                 setIndex(prev => prev + 1);
             } else {
-                onFinish(); // End if at last slide
+                onFinish();
             }
         } else {
             if (index > 0) {
@@ -105,7 +105,7 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
         }
     }, [index, onFinish]);
 
-    // Keyboard Event Listener (Arrows + Space/Esc)
+    // Keyboard Listeners
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === 'ArrowRight') {
@@ -128,7 +128,6 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
             navigate('next');
         }, currentSlide.duration);
 
-        // Cleanup: This runs if component unmounts OR if 'index' changes (via manual nav)
         return () => clearTimeout(timer);
     }, [index, navigate]);
 
@@ -146,10 +145,12 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.95, filter: 'blur(8px)', x: 20 }} // Slight slide-in
-                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)', x: 0 }}
-                    exit={{ opacity: 0, scale: 1.05, filter: 'blur(8px)', x: -20 }} // Slight slide-out
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    // --- CINEMATIC ANIMATION RESTORED (No X movement) ---
+                    initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }} // Slower, deeper transition
+                    // ----------------------------------------------------
                     className="relative z-10 w-full max-w-5xl flex flex-col items-center justify-center"
                 >
 
@@ -192,7 +193,7 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                             <div className="flex flex-wrap justify-center gap-10 md:gap-20">
                                 {slide.people.map((person, i) => (
                                     <motion.div
-                                        key={person.name + i} // added index to key for uniqueness
+                                        key={person.name + i}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: i * 0.2 + 0.3, duration: 0.8 }}
