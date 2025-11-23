@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, BookOpen, Film, MapPin, Terminal, Plus, Minus, PlayCircle, History, Shield } from 'lucide-react';
+import { ArrowLeft, BookOpen, Film, MapPin, Terminal, Plus, Minus, PlayCircle, History, Shield, Radio } from 'lucide-react';
 
 // --- IMAGE HELPER ---
 const p = (path: string) => process.env.NODE_ENV === 'production' ? `/my-legacy${path}` : path;
@@ -35,31 +35,50 @@ const principles = [
     "Logic > Emotion"
 ];
 
+// --- LIBRARY (BOOKS) ---
 const library = [
     { title: "Sapiens", author: "Yuval Noah Harari", tag: "History", takeaway: "We rule the world because we can believe in fictional stories (Money, Gods, Nations)." },
     { title: "The Beginning of Infinity", author: "David Deutsch", tag: "Science", takeaway: "Problems are inevitable. But all problems are soluble." },
     { title: "Skin in the Game", author: "Nassim Taleb", tag: "Philosophy", takeaway: "Never trust a person who doesn't have something to lose if they are wrong." },
 ];
 
+// --- CINEMA (MOVIES) ---
 const cinema = [
     { title: "Interstellar", author: "Christopher Nolan", tag: "Sci-Fi", takeaway: "Love is the only thing that transcends time and space." },
     { title: "The Matrix", author: "The Wachowskis", tag: "Philosophy", takeaway: "The world is a system designed to blind you from the truth." },
     { title: "C/o Kancharapalem", author: "Venkatesh Maha", tag: "Reality", takeaway: "God is just a layer. Love strips us naked." },
 ];
 
-// --- UPDATED FAQ SECTION WITH MULTIPLE VIDEOS ---
+// --- SIGNALS (YOUTUBE / PODCASTS) ---
+const youtube = [
+    {
+        title: "Optimistic Nihilism",
+        channel: "Kurzgesagt",
+        url: "https://www.youtube.com/embed/MBRqu0YOH14",
+        takeaway: "If the universe has no purpose, then we get to dictate our own purpose."
+    },
+    {
+        title: "The Egg",
+        channel: "Kurzgesagt (Andy Weir)",
+        url: "https://www.youtube.com/embed/h6fcK_fRYaI",
+        takeaway: "Every human being who ever lived and will ever live... is you."
+    },
+    {
+        title: "Why We're Polarized",
+        channel: "Ezra Klein",
+        url: "https://www.youtube.com/embed/tEczkhfLwqM",
+        takeaway: "Identity politics is not a bug; it is the operating system of human grouping."
+    }
+];
+
 const faq = [
     {
         question: "Do you believe in God?",
-        type: "video", // Supports multiple videos now
+        type: "video",
         videos: [
             {
                 url: "https://www.youtube.com/embed/9D05ej8u-gU", // Carl Sagan
                 caption: "Perspective: The Pale Blue Dot."
-            },
-            {
-                url: "https://www.youtube.com/embed/MBRqu0YOH14", // Kurzgesagt
-                caption: "Philosophy: Optimistic Nihilism."
             }
         ]
     },
@@ -67,17 +86,12 @@ const faq = [
         question: "Why this website?",
         type: "text",
         answer: "Because biology is temporary. Code is persistent. We spend 80 years building a life, and it vanishes when the brain shuts down. This is my backup drive."
-    },
-    {
-        question: "What is your politics?",
-        type: "text",
-        answer: "I do not follow parties. I follow systems. Politics is the management of bias. I prefer the management of truth."
     }
 ];
 
 // --- COMPONENT ---
 export default function AboutPage() {
-    const [activeTab, setActiveTab] = useState<'books' | 'movies'>('books');
+    const [activeTab, setActiveTab] = useState<'books' | 'movies' | 'youtube'>('books');
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     return (
@@ -167,19 +181,26 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* 4. THE INPUTS */}
+                {/* 4. THE ARCHIVE (Inputs) */}
                 <section className="mb-32">
-                    <div className="flex items-center gap-8 mb-8 border-b border-stone-800 pb-4">
+                    {/* TABS */}
+                    <div className="flex items-center gap-6 md:gap-8 mb-8 border-b border-stone-800 pb-4 overflow-x-auto">
                         <button onClick={() => setActiveTab('books')} className={`flex items-center gap-2 text-xs uppercase tracking-widest transition-colors ${activeTab === 'books' ? 'text-white' : 'text-stone-600 hover:text-stone-400'}`}>
                             <BookOpen size={14} /> Library
                         </button>
                         <button onClick={() => setActiveTab('movies')} className={`flex items-center gap-2 text-xs uppercase tracking-widest transition-colors ${activeTab === 'movies' ? 'text-white' : 'text-stone-600 hover:text-stone-400'}`}>
                             <Film size={14} /> Cinema
                         </button>
+                        <button onClick={() => setActiveTab('youtube')} className={`flex items-center gap-2 text-xs uppercase tracking-widest transition-colors ${activeTab === 'youtube' ? 'text-white' : 'text-stone-600 hover:text-stone-400'}`}>
+                            <Radio size={14} /> Signals
+                        </button>
                     </div>
 
+                    {/* CONTENT RENDER */}
                     <div className="grid gap-4">
-                        {(activeTab === 'books' ? library : cinema).map((item, i) => (
+
+                        {/* --- BOOKS & MOVIES (LIST VIEW) --- */}
+                        {(activeTab === 'books' || activeTab === 'movies') && (activeTab === 'books' ? library : cinema).map((item, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="group border border-stone-900 bg-stone-900/20 p-6 rounded-lg hover:border-stone-700 transition-colors">
                                 <div className="flex justify-between items-baseline mb-2">
                                     <h3 className="font-serif text-xl text-stone-200 group-hover:text-white transition-colors">{item.title}</h3>
@@ -189,10 +210,35 @@ export default function AboutPage() {
                                 <p className="font-serif italic text-stone-500 group-hover:text-stone-300 transition-colors">"{item.takeaway}"</p>
                             </motion.div>
                         ))}
+
+                        {/* --- YOUTUBE (VIDEO GRID VIEW) --- */}
+                        {activeTab === 'youtube' && (
+                            <div className="grid grid-cols-1 gap-8">
+                                {youtube.map((item, i) => (
+                                    <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="group border border-stone-900 bg-stone-900/20 rounded-lg overflow-hidden hover:border-stone-700 transition-colors">
+
+                                        {/* Video Embed */}
+                                        <div className="aspect-video bg-black relative">
+                                            <iframe src={item.url} className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700" allowFullScreen />
+                                        </div>
+
+                                        {/* Text Info */}
+                                        <div className="p-6">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <h3 className="font-serif text-xl text-stone-200 group-hover:text-white transition-colors">{item.title}</h3>
+                                                <span className="font-mono text-[10px] text-stone-600 uppercase tracking-widest">{item.channel}</span>
+                                            </div>
+                                            <p className="font-serif italic text-stone-500 text-sm group-hover:text-stone-300 transition-colors mt-3">"{item.takeaway}"</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        )}
+
                     </div>
                 </section>
 
-                {/* 5. THE INQUIRY (FAQ - UPDATED) */}
+                {/* 5. THE INQUIRY (FAQ) */}
                 <section className="mb-24 border-t border-stone-900 pt-16">
                     <div className="flex items-center gap-3 mb-10">
                         <Terminal size={18} className="text-stone-600" />
@@ -211,23 +257,15 @@ export default function AboutPage() {
                                     {openFaq === i && (
                                         <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden">
                                             <div className="p-6 pt-0 pl-8">
-
-                                                {/* TEXT ANSWER */}
                                                 {item.type === 'text' && (
                                                     <p className="font-serif text-stone-400 italic leading-relaxed">"{item.answer}"</p>
                                                 )}
-
-                                                {/* VIDEO GALLERY (MULTIPLE VIDEOS) */}
                                                 {item.type === 'video' && item.videos && (
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                         {item.videos.map((vid: any, vIndex: number) => (
                                                             <div key={vIndex} className="w-full">
                                                                 <div className="aspect-video bg-black border border-stone-800 rounded relative overflow-hidden">
-                                                                    <iframe
-                                                                        src={vid.url}
-                                                                        className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-                                                                        allowFullScreen
-                                                                    />
+                                                                    <iframe src={vid.url} className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700" allowFullScreen />
                                                                 </div>
                                                                 <div className="flex items-center gap-2 mt-3 text-stone-600">
                                                                     <PlayCircle size={12} />
@@ -237,7 +275,6 @@ export default function AboutPage() {
                                                         ))}
                                                     </div>
                                                 )}
-
                                             </div>
                                         </motion.div>
                                     )}
