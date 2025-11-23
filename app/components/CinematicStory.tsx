@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { withBase } from '../utils';
 
 // --- THE SCRIPT ---
 const scenes = [
@@ -14,31 +15,31 @@ const scenes = [
     },
     {
         id: 2,
-        image: "/images/stray-sheep.jpg", // Replace with an image of a lost/stray sheep or dark forest
+        image: withBase("/images/stray-sheep.jpg"), // Replace with an image of a lost/stray sheep or dark forest
         text: "The Outsider.",
         subtext: "If a sheep belongs to another Shepherd, it is an enemy. If it is a stray, it belongs to the jungle. It is not welcome among the civilized herd."
     },
     {
         id: 3,
-        image: "/images/tiger.jpg", // Replace with a Tiger/Predator image
+        image: withBase("/images/tiger.jpg"), // Replace with a Tiger/Predator image
         text: "The Cost of Freedom.",
         subtext: "We domesticate the sheep because they are useful. We fear the Tiger because it is free. So we cage it. Society tolerates submission; it fears autonomy."
     },
     {
         id: 4,
-        image: "/images/school-uniforms.webp", // Replace with School kids
+        image: withBase("/images/school-uniforms.webp"), // Replace with School kids
         text: "The First Uniform.",
         subtext: "To manage the herd, we need tags. It starts with a school uniform. A Roll Number (1-100). We teach children to look the same, walk the same, and compete for the Shepherd's favor."
     },
     {
         id: 5,
-        image: "/images/employees.webp", // Replace with Corporate/Swiggy/Factory workers
+        image: withBase("/images/employees.webp"), // Replace with Corporate/Swiggy/Factory workers
         text: "The Identification.",
         subtext: "We grow up, but the tags just change. Caste. Religion. Nationality. Company Badge. We need these systems to answer one question: 'Which sheep are you?'"
     },
     {
         id: 6,
-        image: "/images/freedom-sky.jpg", // Abstract sky or mountaintop
+        image: withBase("/images/freedom-sky.jpg"), // Abstract sky or mountaintop
         text: "The Ultimate Value.",
         subtext: "There is nothing higher than Freedom. To exist without a tag. To survive without a Shepherd. That is the only true Enlightenment.",
         isFinal: true
@@ -68,7 +69,7 @@ export default function CinematicStory() {
                                 className="w-full h-full object-cover grayscale brightness-[0.4]"
                             />
                             {/* Cinematic Vignette & Grain */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-90"></div>
+                            <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-black opacity-90"></div>
                             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
                         </div>
                     </motion.div>

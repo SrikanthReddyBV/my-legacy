@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { withBase } from '../utils';
 
 // --- 1. DEFINE YOUR TYPES ---
 type Slide =
@@ -37,9 +38,8 @@ const creditsScript: Slide[] = [
         title: "Dedicated To The Giants",
         duration: 6000,
         people: [
-            { name: "Alan Turing", role: "The Architect", image: "/images/turing.jpg" },
-            { name: "Grace Hopper", role: "The Visionary", image: "/images/hopper.jpg" },
-            { name: "My Father", role: "The Foundation", image: "/images/dad.jpg" },
+            { name: "Alan Turing", role: "The Architect", image: withBase("/images/turing.jpg") },
+            { name: "Grace Hopper", role: "The Visionary", image: withBase("/images/hopper.jpg") },
         ]
     },
     {
@@ -47,8 +47,8 @@ const creditsScript: Slide[] = [
         title: "To My Parents",
         duration: 8000,
         people: [
-            { name: "Badvel Rajeswari", role: "Amma", image: "/images/mom.jpeg" },
-            { name: "Badvel Lakshmi Reddy", role: "Nanna", image: "/images/dad.jpeg" },
+            { name: "Badvel Rajeswari", role: "Amma", image: withBase("/images/mom.jpeg") },
+            { name: "Badvel Lakshmi Reddy", role: "Nanna", image: withBase("/images/dad.jpeg") },
         ]
     },
     {
@@ -56,8 +56,8 @@ const creditsScript: Slide[] = [
         title: "Special Mentions",
         duration: 8000,
         people: [
-            { name: "Puri Jagannadh", role: "For his Puri Musings", image: "/images/puri.jpg" },
-            { name: "RGV", role: "For Ramuism", image: "/images/rgv.jpg" },
+            { name: "Puri Jagannadh", role: "For his Puri Musings", image: withBase("/images/puri.jpg") },
+            { name: "RGV", role: "For Ramuism", image: withBase("/images/rgv.jpg") },
         ]
     },
     {

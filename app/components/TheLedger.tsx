@@ -2,12 +2,13 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { withBase } from '../utils';
 
 const assets = [
     {
         id: 1,
         subject: "THE CATTLE",
-        image: "/images/buffalo.jpg", // Herd of buffaloes
+        image: withBase("/images/buffalo.jpg"), // Herd of buffaloes
         business: "DAIRY & MEAT BUSINESS",
         input: "Grass + Water",
         output: "Milk + Flesh",
@@ -16,7 +17,7 @@ const assets = [
     {
         id: 2,
         subject: "THE STUDENT",
-        image: "/images/students.jpg", // Kids in rows
+        image: withBase("/images/students.jpg"), // Kids in rows
         business: "SCHOOL BUSINESS",
         input: "Uniforms + Books",
         output: "Fees + Grant Aid",
@@ -25,7 +26,7 @@ const assets = [
     {
         id: 3,
         subject: "THE TENANT",
-        image: "/images/apartment.jpg", // Building windows
+        image: withBase("/images/apartment.jpg"), // Building windows
         business: "REAL ESTATE BUSINESS",
         input: "Bricks + Mortar",
         output: "Monthly Rent",
@@ -34,7 +35,7 @@ const assets = [
     {
         id: 4,
         subject: "THE DEVOTEE",
-        image: "/images/temple-crowd.jpg", // Crowd at a religious place
+        image: withBase("/images/temple-crowd.jpg"), // Crowd at a religious place
         business: "GOD BUSINESS",
         input: "Hope + Fear",
         output: "Donations + Offerings",
@@ -43,7 +44,7 @@ const assets = [
     {
         id: 5,
         subject: "THE CITIZEN",
-        image: "/images/busy-street.jpg", // City crowd
+        image: withBase("/images/busy-street.jpg"), // City crowd
         business: "NATION BUSINESS",
         input: "Infrastructure",
         output: "Taxes + Labor",

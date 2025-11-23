@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Clapperboard, Activity, Waves, AlertOctagon } from 'lucide-react';
+import { withBase } from '../utils';
 
 export default function MementoMori() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +20,7 @@ export default function MementoMori() {
             <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/images/cinema.jpg" // Image of an empty theater or projector light
+                        src={withBase("/images/cinema.jpg")} // Image of an empty theater or projector light
                         alt="Cinema"
                         className="w-full h-full object-cover grayscale brightness-[0.3]"
                     />

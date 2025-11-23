@@ -1,6 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { withBase } from '../utils';
 
 // --- THE SCRIPT ---
 const storyChapters = [
@@ -9,7 +10,7 @@ const storyChapters = [
         title: "THE HERD",
         scientificName: "OVIS ARIES", // The Data Link
         status: "TRACKED",
-        image: "/images/sheep.jpg", // Needs a photo of a massive herd
+        image: withBase("/images/sheep.jpg"), // Needs a photo of a massive herd
         text: "This is a sheep. It follows the one in front. It finds safety in numbers. It does not know it is being counted. It does not know it is owned."
     },
     {
@@ -17,7 +18,7 @@ const storyChapters = [
         title: "THE COLONY",
         scientificName: "FORMICIDAE",
         status: "COLLECTIVE",
-        image: "/images/ants.jpg", // Needs a macro shot of ants
+        image: withBase("/images/ants.jpg"), // Needs a macro shot of ants
         text: "These are ants. No single ant has an identity. They are biological machines programmed for the colony. To be an individual is to be a defect."
     },
     {
@@ -25,7 +26,7 @@ const storyChapters = [
         title: "THE MASK",
         scientificName: "MATERIAL LAYER",
         status: "ARTIFICIAL",
-        image: "/images/clothing.jpg", // A photo of a suit, or hanging clothes
+        image: withBase("/images/clothing.jpg"), // A photo of a suit, or hanging clothes
         text: "This is clothing. We use it to signal status. We classify humans by the fabric they drape over their skin. A tie commands respect; rags invite pity. But it is just cotton and polyester."
     },
     {
@@ -33,7 +34,7 @@ const storyChapters = [
         title: "THE ETERNAL TRUTH",
         scientificName: "HOMO SAPIENS",
         status: "EXPOSED",
-        image: "/images/skin.jpg", // Abstract texture of skin or a silhouette
+        image: withBase("/images/skin.jpg"), // Abstract texture of skin or a silhouette
         text: "We are born naked. We die naked. Everything in between is a costume. The universe does not tax your soul, but society taxes your existence."
     },
     {
@@ -41,7 +42,7 @@ const storyChapters = [
         title: "THE TAX",
         scientificName: "EXCEPTIONALISM",
         status: "PENALIZED",
-        image: "/images/crowd.jpg", // A blurred crowd or a skyscraper
+        image: withBase("/images/crowd.jpg"), // A blurred crowd or a skyscraper
         text: "Any superpower you possess will be taxed. If you are too fast, they slow you down. If you are too rich, they take your gold. Mediocrity is free; Excellence is expensive."
     },
     {
@@ -49,7 +50,7 @@ const storyChapters = [
         title: "THE APEX",
         scientificName: "FREEDOM",
         status: "UNBOUND",
-        image: "/images/tiger.jpg", // A lone tiger, wolf, or eagle
+        image: withBase("/images/tiger.jpg"), // A lone tiger, wolf, or eagle
         text: "There is nothing above Freedom. It is the ultimate value. An Apex Predator chooses its own path. Sometimes, the strongest choice is not to reproduce the cycle, but to end it."
     }
 ];
