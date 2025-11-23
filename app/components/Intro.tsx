@@ -28,6 +28,13 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'quote',
+        text: '"In individuals, insanity is rare; but in groups, parties, nations and epochs, it is the rule."',
+        author: "Friedrich Nietzsche",
+        source: "",
+        duration: 6000
+    },
+    {
+        type: 'quote',
         text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
         author: "శ్రీ శ్రీ",
         source: "మహాప్రస్థానం",
