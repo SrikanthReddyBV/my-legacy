@@ -62,7 +62,7 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'faces',
-        title: "Special Thanks For Making Engineering Degree Possible For Me",
+        title: "Thanks for the Engineering Degree",
         duration: 8000,
         people: [
             { name: "Y S Rajasekhara Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysr.webp"), url: "https://en.wikipedia.org/wiki/Y._S._Rajasekhara_Reddy" },
@@ -71,7 +71,7 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'faces',
-        title: "Thanks for the Widow Pension Support",
+        title: "Thanks for NTR Bharosa",
         duration: 8000,
         people: [
             { name: "Nara Chandrababu Naidu", role: "Chief Minister of Andhra Pradesh", image: withBase("/images/cbn.jpg"), url: "https://en.wikipedia.org/wiki/N._Chandrababu_Naidu" },
@@ -91,8 +91,8 @@ const creditsScript: Slide[] = [
         title: "Special Mentions",
         duration: 8000,
         people: [
-            { name: "Puri Jagannadh", role: "For his Puri Musings", image: withBase("/images/puri.jpg"), url: "https://en.wikipedia.org/wiki/Puri_Jagannadh" },
-            { name: "RGV", role: "For his Ramuism", image: withBase("/images/rgv.jpg"), url: "https://en.wikipedia.org/wiki/Ram_Gopal_Varma" },
+            { name: "Puri Jagannadh", role: "For Puri Musings", image: withBase("/images/puri.jpg"), url: "https://en.wikipedia.org/wiki/Puri_Jagannadh" },
+            { name: "RGV", role: "For Ramuism", image: withBase("/images/rgv.jpg"), url: "https://en.wikipedia.org/wiki/Ram_Gopal_Varma" },
         ]
     },
     {

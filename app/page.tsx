@@ -40,9 +40,9 @@ export default function Home() {
   }
 
   // PHASE 2: DISCLAIMER
-  if (!disclaimerAccepted) {
-    return <Disclaimer onAccept={() => setDisclaimerAccepted(true)} />;
-  }
+  // if (!disclaimerAccepted) {
+  //   return <Disclaimer onAccept={() => setDisclaimerAccepted(true)} />;
+  // }
 
   // PHASE 3: INTRO & MAIN SITE
   return (
