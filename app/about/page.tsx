@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, BookOpen, Film, MapPin, Terminal, Plus, Minus, PlayCircle, History, Shield, Radio } from 'lucide-react';
+import { title } from 'process';
 
 // --- IMAGE HELPER ---
 const p = (path: string) => process.env.NODE_ENV === 'production' ? `/my-legacy${path}` : path;
@@ -52,22 +53,28 @@ const cinema = [
 // --- SIGNALS (YOUTUBE / PODCASTS) ---
 const youtube = [
     {
-        title: "Optimistic Nihilism",
-        channel: "Kurzgesagt",
-        url: "https://www.youtube.com/embed/MBRqu0YOH14",
-        takeaway: "If the universe has no purpose, then we get to dictate our own purpose."
+        title: "Lakdikapool",
+        channel: "Puri Jagannadh",
+        url: "https://www.youtube.com/embed/MiJCKVBlyLU",
+        takeaway: "Hakoona Matata"
     },
     {
-        title: "The Egg",
-        channel: "Kurzgesagt (Andy Weir)",
-        url: "https://www.youtube.com/embed/h6fcK_fRYaI",
-        takeaway: "Every human being who ever lived and will ever live... is you."
+        title: "Suicide",
+        channel: "Puri Jagannadh",
+        url: "https://www.youtube.com/embed/QbGKy8lZovQ",
+        takeaway: "Solve your problems and then die"
     },
     {
-        title: "Why We're Polarized",
-        channel: "Ezra Klein",
-        url: "https://www.youtube.com/embed/tEczkhfLwqM",
-        takeaway: "Identity politics is not a bug; it is the operating system of human grouping."
+        title: "Character",
+        channel: "Puri Jagannadh",
+        url: "https://www.youtube.com/embed/QGVoDpOEwB4",
+        takeaway: "Be anti-social"
+    },
+    {
+        title: "Marriage",
+        channel: "Puri Jagannadh",
+        url: "https://www.youtube.com/embed/t7_sXiHWpW8",
+        takeaway: "It's a contract, not a celebration"
     }
 ];
 

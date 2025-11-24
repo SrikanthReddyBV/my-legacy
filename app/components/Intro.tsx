@@ -1,21 +1,23 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Linkedin } from 'lucide-react';
+import Image from 'next/image';
 import { withBase } from '../utils';
 
-// --- 1. DEFINE YOUR TYPES ---
+// --- 1. DEFINE YOUR TYPES (Updated quote type) ---
 type Slide =
     | { type: 'title'; text: string; subtext?: string; duration: number }
-    | { type: 'quote'; text: string; author: string; source?: string; duration: number }
-    | { type: 'faces'; title: string; people: { name: string; role?: string; image: string }[]; duration: number }
-    | { type: 'list'; title: string; items: string[]; duration: number };
+    // Added optional 'image' to quote type
+    | { type: 'quote'; text: string; author: string; image?: string; source?: string; duration: number }
+    | { type: 'faces'; title: string; people: { name: string; role?: string; image: string; url?: string }[]; duration: number }
+    | { type: 'list'; title: string; items: { name: string; url?: string }[]; duration: number };
 
 // --- 2. YOUR SCRIPT ---
 const creditsScript: Slide[] = [
-    // --- CARD 1: THE NAME (UPDATED) ---
     {
         type: 'title',
-        text: "Badvel Venkata Srikanth Reddy", // Single line now
+        text: "Badvel Venkata Srikanth Reddy",
         subtext: "THE DIGITAL LEGACY OF",
         duration: 8000
     },
@@ -23,8 +25,10 @@ const creditsScript: Slide[] = [
         type: 'quote',
         text: '"We are just an advanced breed of monkeys on a minor planet of a very average star."',
         author: "Stephen Hawking",
-        source: "A Brief History of Time",
-        duration: 6000
+        // Example: Add author image here if you have it (e.g., /images/hawking.jpg)
+        // image: withBase("/images/hawking.jpg"), 
+        source: "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",
+        duration: 8000
     },
     {
         type: 'quote',
@@ -35,26 +39,42 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'quote',
+        text: '"Man is the creature who does not know what to desire, and he turns to others in order to make up his mind. We desire what others desire because we imitate their desires."',
+        author: "René Girard",
+        source: "https://en.wikipedia.org/wiki/Mimetic_theory",
+        duration: 8000
+    },
+    {
+        type: 'quote',
         text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
         author: "శ్రీ శ్రీ",
-        source: "మహాప్రస్థానం",
+        image: withBase("/images/srisri.jpeg"),
+        source: "https://en.wikipedia.org/wiki/Mahaprasthanam",
+        duration: 6000
+    },
+    {
+        type: 'quote',
+        text: '"All of these years of my service towards mankind did not bring me nothing but assaults and humiliations."',
+        author: "Nikola Tesla",
+        image: withBase("/images/tesla.jpeg"),
+        source: "https://en.wikipedia.org/wiki/Nikola_Tesla",
         duration: 6000
     },
     {
         type: 'faces',
-        title: "Thanks for the Engineering Degree",
-        duration: 6000,
+        title: "Special Thanks For Making Engineering Degree Possible For Me",
+        duration: 8000,
         people: [
-            { name: "Y S Rajasekhara Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysr.webp") },
-            { name: "Y S Jaganmohan Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysjagan.jpg") },
+            { name: "Y S Rajasekhara Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysr.webp"), url: "https://en.wikipedia.org/wiki/Y._S._Rajasekhara_Reddy" },
+            { name: "Y S Jaganmohan Reddy", role: "Former Chief Minister of Andhra Pradesh", image: withBase("/images/ysjagan.jpg"), url: "https://en.wikipedia.org/wiki/Y._S._Jagan_Mohan_Reddy" },
         ]
     },
     {
         type: 'faces',
-        title: "Thanks for the Pension",
-        duration: 6000,
+        title: "Thanks for the Widow Pension Support",
+        duration: 8000,
         people: [
-            { name: "Nara Chandrababu Naidu", role: "Chief Minister of Andhra Pradesh", image: withBase("/images/cbn.jpg") },
+            { name: "Nara Chandrababu Naidu", role: "Chief Minister of Andhra Pradesh", image: withBase("/images/cbn.jpg"), url: "https://en.wikipedia.org/wiki/N._Chandrababu_Naidu" },
         ]
     },
     {
@@ -71,20 +91,20 @@ const creditsScript: Slide[] = [
         title: "Special Mentions",
         duration: 8000,
         people: [
-            { name: "Puri Jagannadh", role: "For his Puri Musings", image: withBase("/images/puri.jpg") },
-            { name: "RGV", role: "For Ramuism", image: withBase("/images/rgv.jpg") },
+            { name: "Puri Jagannadh", role: "For his Puri Musings", image: withBase("/images/puri.jpg"), url: "https://en.wikipedia.org/wiki/Puri_Jagannadh" },
+            { name: "RGV", role: "For his Ramuism", image: withBase("/images/rgv.jpg"), url: "https://en.wikipedia.org/wiki/Ram_Gopal_Varma" },
         ]
     },
     {
         type: 'list',
         title: "With Special Thanks",
-        duration: 5000,
+        duration: 10000,
         items: [
-            "The Open Source Community",
-            "Next.js Core Team",
-            "Wikipedia Editors",
-            "The Internet Archive",
-            "My High School Physics Teacher"
+            { name: "Pankaj Kumar Agarwal", url: "https://www.linkedin.com/in/pankaj-agarwal-723a686/" },
+            { name: "Rafi Ali Khan", url: "https://www.linkedin.com/in/rafialikhan/" },
+            { name: "Shyam Sundar M", url: "https://www.linkedin.com/in/shyamsundarm/" },
+            { name: "Sankaranarayanan (Sankar) Viswanathan", url: "https://www.linkedin.com/in/sankarviswanathan/" },
+            { name: "Bhavish Aggarwal", url: "https://twitter.com/bhash" }
         ]
     },
     {
@@ -98,7 +118,6 @@ const creditsScript: Slide[] = [
 export default function Intro({ onFinish }: { onFinish: () => void }) {
     const [index, setIndex] = useState(0);
 
-    // Logic to move Forward/Backward
     const navigate = useCallback((direction: 'next' | 'prev') => {
         if (direction === 'next') {
             if (index < creditsScript.length - 1) {
@@ -113,43 +132,42 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
         }
     }, [index, onFinish]);
 
-    // Keyboard Listeners
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.code === 'ArrowRight') navigate('next');
             else if (e.code === 'ArrowLeft') navigate('prev');
             else if (e.code === 'Space' || e.code === 'Escape') onFinish();
         };
-
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [navigate, onFinish]);
 
-    // Auto-Advance Timer
     useEffect(() => {
         const currentSlide = creditsScript[index];
         const timer = setTimeout(() => {
             navigate('next');
         }, currentSlide.duration);
-
         return () => clearTimeout(timer);
     }, [index, navigate]);
 
     const slide = creditsScript[index];
+
+    const isUrl = (str?: string) => {
+        if (!str) return false;
+        try { new URL(str); return true; } catch { return false; }
+    };
 
     return (
         <motion.div
             exit={{ opacity: 0, transition: { duration: 1 } }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white px-6 overflow-hidden select-none"
         >
-            {/* Background Texture */}
             <div className="absolute inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-80"></div>
 
             <AnimatePresence mode='wait'>
                 <motion.div
                     key={index}
-                    // Cinematic Fade Animation
                     initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, scale: 1.05, filter: 'blur(10px)' }}
@@ -157,38 +175,61 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                     className="relative z-10 w-full max-w-7xl flex flex-col items-center justify-center"
                 >
 
-                    {/* --- TYPE 1: TITLE CARD (REFINED & SMALLER) --- */}
+                    {/* --- TYPE 1: TITLE CARD --- */}
                     {slide.type === 'title' && (
                         <div className="text-center flex flex-col items-center justify-center gap-6">
-
-                            {/* SUBTEXT */}
                             {slide.subtext && (
-                                <p className="font-sans text-zinc-500 tracking-[0.4em] uppercase text-[10px] md:text-xs animate-pulse">
+                                /* VISIBILITY FIX: lighter zinc-400 */
+                                <p className="font-sans text-zinc-400 tracking-[0.4em] uppercase text-[10px] md:text-xs animate-pulse">
                                     {slide.subtext}
                                 </p>
                             )}
-
-                            {/* NAME (Single Line, Smaller, Wider Tracking) */}
                             <h1 className="font-serif font-bold text-2xl md:text-4xl lg:text-5xl tracking-[0.15em] uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-400 drop-shadow-xl">
                                 {slide.text}
                             </h1>
                         </div>
                     )}
 
-                    {/* --- TYPE 2: QUOTE --- */}
+                    {/* --- TYPE 2: QUOTE (WITH AUTHOR IMAGE + VISIBILITY FIX) --- */}
                     {slide.type === 'quote' && (
                         <div className="max-w-3xl text-center flex flex-col items-center">
                             <p className="font-serif text-2xl md:text-4xl italic leading-relaxed text-zinc-200 text-glow">
                                 {slide.text}
                             </p>
                             <div className="mt-8 h-px w-12 bg-zinc-700 mx-auto"></div>
-                            <p className="mt-4 text-sm text-zinc-400 uppercase tracking-[0.3em] font-sans font-semibold">
-                                {slide.author}
-                            </p>
-                            {slide.source && (
-                                <p className="mt-2 text-xs text-zinc-600 font-serif italic tracking-wide">
-                                    ( {slide.source} )
+
+                            {/* Author Info Block */}
+                            <div className="mt-6 flex items-center justify-center gap-4">
+                                {/* Optional Author Image */}
+                                {slide.image && (
+                                    <div className="relative w-8 h-8 rounded-full overflow-hidden border border-zinc-700 grayscale contrast-125">
+                                        <Image src={slide.image} alt={slide.author} fill className="object-cover" />
+                                    </div>
+                                )}
+                                {/* VISIBILITY FIX: text-zinc-300 instead of 500 */}
+                                <p className="text-sm text-zinc-300 uppercase tracking-[0.3em] font-sans font-semibold">
+                                    {slide.author}
                                 </p>
+                            </div>
+
+                            {/* Clickable Source */}
+                            {slide.source && (
+                                isUrl(slide.source) ? (
+                                    <a
+                                        href={slide.source}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        // VISIBILITY FIX: text-zinc-400 and hover text-zinc-200
+                                        className="mt-4 flex items-center gap-2 text-xs text-zinc-400 font-serif italic tracking-wide hover:text-zinc-200 transition-colors cursor-pointer group"
+                                    >
+                                        <span>( Source )</span>
+                                        <ExternalLink size={12} className="opacity-70 group-hover:opacity-100" />
+                                    </a>
+                                ) : (
+                                    <p className="mt-4 text-xs text-zinc-400 font-serif italic tracking-wide">
+                                        ( {slide.source} )
+                                    </p>
+                                )
                             )}
                         </div>
                     )}
@@ -196,7 +237,8 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                     {/* --- TYPE 3: FACES --- */}
                     {slide.type === 'faces' && (
                         <div className="w-full text-center">
-                            <h2 className="text-zinc-600 text-xs uppercase tracking-[0.5em] mb-12">{slide.title}</h2>
+                            {/* VISIBILITY FIX: text-zinc-400 */}
+                            <h2 className="text-zinc-400 text-xs uppercase tracking-[0.5em] mb-12">{slide.title}</h2>
                             <div className="flex flex-wrap justify-center gap-10 md:gap-20">
                                 {slide.people.map((person, i) => (
                                     <motion.div
@@ -206,17 +248,28 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                                         transition={{ delay: i * 0.2 + 0.3, duration: 0.8 }}
                                         className="flex flex-col items-center group"
                                     >
-                                        <div className="relative w-24 h-24 md:w-40 md:h-40 mb-6 rounded-full overflow-hidden border border-zinc-800 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-                                            <img
-                                                src={person.image}
-                                                alt={person.name}
-                                                className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
-                                            />
+                                        <div className={`relative w-24 h-24 md:w-40 md:h-40 mb-6 rounded-full overflow-hidden border border-zinc-800 shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-colors ${person.url ? 'cursor-pointer hover:border-zinc-500' : ''}`}>
+                                            {person.url ? (
+                                                <a href={person.url} target="_blank" rel="noopener noreferrer">
+                                                    <Image src={person.image} alt={person.name} fill className="object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" />
+                                                </a>
+                                            ) : (
+                                                <Image src={person.image} alt={person.name} fill className="object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700" />
+                                            )}
                                         </div>
-                                        {person.name && (
+
+                                        {person.url ? (
+                                            <a href={person.url} target="_blank" rel="noopener noreferrer" className="group-hover:text-white transition-colors">
+                                                <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide flex items-center justify-center gap-2">
+                                                    {person.name}
+                                                </h3>
+                                            </a>
+                                        ) : (
                                             <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide">{person.name}</h3>
                                         )}
-                                        {person.role && <p className="text-xs text-zinc-500 uppercase tracking-widest mt-1">{person.role}</p>}
+
+                                        {/* VISIBILITY FIX: text-zinc-400 */}
+                                        {person.role && <p className="text-xs text-zinc-400 uppercase tracking-widest mt-2">{person.role}</p>}
                                     </motion.div>
                                 ))}
                             </div>
@@ -226,17 +279,33 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                     {/* --- TYPE 4: LIST --- */}
                     {slide.type === 'list' && (
                         <div className="text-center">
-                            <h2 className="text-zinc-600 text-xs uppercase tracking-[0.5em] mb-10">{slide.title}</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
+                            <h2 className="text-zinc-400 text-xs uppercase tracking-[0.5em] mb-10">{slide.title}</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6">
                                 {slide.items.map((item, i) => (
                                     <motion.div
-                                        key={item}
+                                        key={item.name}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: i * 0.15 + 0.3 }}
-                                        className="font-serif text-xl md:text-2xl text-zinc-300"
                                     >
-                                        {item}
+                                        {item.url ? (
+                                            <a
+                                                href={item.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center gap-3 group cursor-pointer"
+                                            >
+                                                <span className="font-serif text-xl md:text-2xl text-zinc-300 group-hover:text-white transition-colors">
+                                                    {item.name}
+                                                </span>
+                                                {/* VISIBILITY FIX: text-zinc-500 */}
+                                                <Linkedin size={18} className="text-zinc-500 group-hover:text-[#0077b5] transition-colors" />
+                                            </a>
+                                        ) : (
+                                            <span className="font-serif text-xl md:text-2xl text-zinc-300">
+                                                {item.name}
+                                            </span>
+                                        )}
                                     </motion.div>
                                 ))}
                             </div>
@@ -246,17 +315,15 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                 </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Hints / Footer */}
+            {/* Navigation Hints */}
             <div className="absolute bottom-8 w-full flex flex-col items-center gap-2">
                 <div className="flex gap-2 mb-2">
                     {creditsScript.map((_, i) => (
-                        <div
-                            key={i}
-                            className={`h-1 rounded-full transition-all duration-300 ${i === index ? 'w-6 bg-white' : 'w-1 bg-zinc-800'}`}
-                        />
+                        <div key={i} className={`h-1 rounded-full transition-all duration-300 ${i === index ? 'w-6 bg-white' : 'w-1 bg-zinc-800'}`} />
                     ))}
                 </div>
-                <div className="text-[10px] text-zinc-600 uppercase tracking-[0.3em] flex gap-4">
+                {/* VISIBILITY FIX: text-zinc-500 */}
+                <div className="text-[10px] text-zinc-500 uppercase tracking-[0.3em] flex gap-4">
                     <span className="hidden md:inline">← Prev</span>
                     <button onClick={onFinish} className="hover:text-white transition-colors border-b border-transparent hover:border-white">
                         Space to Skip
