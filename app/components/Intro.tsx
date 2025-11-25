@@ -90,7 +90,7 @@ const creditsScript: Slide[] = [
     {
         type: 'quote',
         text: "మనలాంటి యావరేజ్ పీపుల్. పిట్టా బ్రెయిన్స్ ఉన్న వాళ్ళు మాత్రమే పెళ్లి చేసుకుంటారు. జీనియస్ లు ఎవ్వరూ పెళ్లి చేసుకోరు.",
-        author: "పురి జగన్నాధ్",
+        author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
         duration: 8000
@@ -98,7 +98,7 @@ const creditsScript: Slide[] = [
     {
         type: 'quote',
         text: "పెళ్లి చేసుకోవడం తప్పని ఏ మతమూ చెప్పదు. చెప్తే మతం ఎగిరిపోద్ది. పెళ్లి చేసుకోక పోతే ప్రీస్ట్ కు పనుండదు. పూజారి కట్ అయితే పూజలు, వ్రతాలు కట్. గుడికెళ్ళే పనుండదు. రిలీజియన్ కట్. ఫైనల్ గా యు లూజ్ కనెక్షన్ విత్ గాడ్. అందుకే వాళ్ళు పెళ్లి గురించి నిజాలు చెప్పరు.",
-        author: "పురి జగన్నాధ్",
+        author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
         duration: 12000
@@ -106,7 +106,7 @@ const creditsScript: Slide[] = [
     {
         type: 'quote',
         text: "మిమ్మల్ని మీరు తాడేసి కట్టేసుకోకండి. గానిగెద్దు లాగా అక్కడే తిరుగుతారు.",
-        author: "పురి జగన్నాధ్",
+        author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
         duration: 8000
