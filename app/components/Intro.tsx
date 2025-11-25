@@ -11,16 +11,11 @@ type Slide =
     // Added optional 'image' to quote type
     | { type: 'quote'; text: string; author: string; image?: string; source?: string; duration: number }
     | { type: 'faces'; title: string; people: { name: string; role?: string; image: string; url?: string }[]; duration: number }
-    | { type: 'list'; title: string; items: { name: string; url?: string }[]; duration: number };
+    | { type: 'list'; title: string; items: { name: string; url?: string }[]; duration: number }
+    | { type: 'message'; text: string; duration: number };
 
 // --- 2. YOUR SCRIPT ---
 const creditsScript: Slide[] = [
-    {
-        type: 'title',
-        text: "Badvel Venkata Srikanth Reddy",
-        subtext: "THE DIGITAL LEGACY OF",
-        duration: 8000
-    },
     {
         type: 'quote',
         text: '"We are just an advanced breed of monkeys on a minor planet of a very average star."',
@@ -35,22 +30,22 @@ const creditsScript: Slide[] = [
         text: '"In individuals, insanity is rare; but in groups, parties, nations and epochs, it is the rule."',
         author: "Friedrich Nietzsche",
         source: "",
-        duration: 6000
-    },
-    {
-        type: 'quote',
-        text: '"Man is the creature who does not know what to desire, and he turns to others in order to make up his mind. We desire what others desire because we imitate their desires."',
-        author: "René Girard",
-        source: "https://en.wikipedia.org/wiki/Mimetic_theory",
         duration: 8000
     },
+    // {
+    //     type: 'quote',
+    //     text: '"Man is the creature who does not know what to desire, and he turns to others in order to make up his mind. We desire what others desire because we imitate their desires."',
+    //     author: "René Girard",
+    //     source: "https://en.wikipedia.org/wiki/Mimetic_theory",
+    //     duration: 10000
+    // },
     {
         type: 'quote',
         text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
         author: "శ్రీ శ్రీ",
         image: withBase("/images/srisri.jpeg"),
         source: "https://en.wikipedia.org/wiki/Mahaprasthanam",
-        duration: 6000
+        duration: 8000
     },
     {
         type: 'quote',
@@ -58,7 +53,71 @@ const creditsScript: Slide[] = [
         author: "Nikola Tesla",
         image: withBase("/images/tesla.jpeg"),
         source: "https://en.wikipedia.org/wiki/Nikola_Tesla",
-        duration: 6000
+        duration: 8000
+    },
+    {
+        type: 'quote',
+        text: '"Freedom to me is the ultimate value. There is nothing higher than freedom"',
+        author: "OSHO",
+        image: withBase("/images/osho.jpg"),
+        source: "https://youtu.be/5ocbZhRQS9I?si=gLKL_4bZxKRr0wcT",
+        duration: 10000
+    },
+    {
+        type: 'quote',
+        text: "Marriage infact is a precaution taken by the soceity that nobody becomes a rebel. That no body becomes an individual.",
+        author: "OSHO",
+        image: withBase("/images/osho.jpg"),
+        source: "https://youtu.be/CXlMz1Ja2VM?si=1JlB1NmtkmtMZyd_",
+        duration: 10000
+    },
+    {
+        type: 'quote',
+        text: "Marriage is in it's naked reality a strategy by the soceity to keep everybody under control. And it is in such a subtle way that nobody thinks it atleast in the beginning that it is going to be an imprisonment a lifelong slavery.",
+        author: "OSHO",
+        image: withBase("/images/osho.jpg"),
+        source: "https://youtu.be/CXlMz1Ja2VM?si=Nme_aQMcbaniIhTU",
+        duration: 14000
+    },
+    {
+        type: 'quote',
+        text: "Marriage has been used by all the soceities in the world in all the ages past as a psychological imprisonment.",
+        author: "OSHO",
+        image: withBase("/images/osho.jpg"),
+        source: "https://youtu.be/CXlMz1Ja2VM?si=Nme_aQMcbaniIhTU",
+        duration: 10000
+    },
+    {
+        type: 'quote',
+        text: "మనలాంటి యావరేజ్ పీపుల్. పిట్టా బ్రెయిన్స్ ఉన్న వాళ్ళు మాత్రమే పెళ్లి చేసుకుంటారు. జీనియస్ లు ఎవ్వరూ పెళ్లి చేసుకోరు.",
+        author: "పురి జగన్నాధ్",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
+        duration: 8000
+    },
+    {
+        type: 'quote',
+        text: "పెళ్లి చేసుకోవడం తప్పని ఏ మతమూ చెప్పదు. చెప్తే మతం ఎగిరిపోద్ది. పెళ్లి చేసుకోక పోతే ప్రీస్ట్ కు పనుండదు. పూజారి కట్ అయితే పూజలు, వ్రతాలు కట్. గుడికెళ్ళే పనుండదు. రిలీజియన్ కట్. ఫైనల్ గా యు లూజ్ కనెక్షన్ విత్ గాడ్. అందుకే వాళ్ళు పెళ్లి గురించి నిజాలు చెప్పరు.",
+        author: "పురి జగన్నాధ్",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
+        duration: 12000
+    },
+    {
+        type: 'quote',
+        text: "మిమ్మల్ని మీరు తాడేసి కట్టేసుకోకండి. గానిగెద్దు లాగా అక్కడే తిరుగుతారు.",
+        author: "పురి జగన్నాధ్",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
+        duration: 8000
+    },
+    {
+        type: 'quote',
+        text: "Freedom has ultimate value. Breeding and feeding is an endless trauma.",
+        author: "Puri Jagannadh",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
+        duration: 8000
     },
     {
         type: 'faces',
@@ -71,7 +130,7 @@ const creditsScript: Slide[] = [
     },
     {
         type: 'faces',
-        title: "Thanks for NTR Bharosa",
+        title: "Thanks for NTR Bharosa & NTR Vaidya Seva",
         duration: 8000,
         people: [
             { name: "Nara Chandrababu Naidu", role: "Chief Minister of Andhra Pradesh", image: withBase("/images/cbn.jpg"), url: "https://en.wikipedia.org/wiki/N._Chandrababu_Naidu" },
@@ -96,8 +155,16 @@ const creditsScript: Slide[] = [
         ]
     },
     {
+        type: 'faces',
+        title: "And Ofcourse",
+        duration: 8000,
+        people: [
+            { name: "OSHO", role: "For being OSHO", image: withBase("/images/osho.jpg"), url: "https://en.wikipedia.org/wiki/Rajneesh" },
+        ]
+    },
+    {
         type: 'list',
-        title: "With Special Thanks",
+        title: "Thanks",
         duration: 10000,
         items: [
             { name: "Pankaj Kumar Agarwal", url: "https://www.linkedin.com/in/pankaj-agarwal-723a686/" },
@@ -108,10 +175,21 @@ const creditsScript: Slide[] = [
         ]
     },
     {
+        type: 'message',
+        text: "This is a small attempt to show what is obvious. Which has been said by many great minds before me.",
+        duration: 8000
+    },
+    {
         type: 'title',
         text: "Welcome",
         duration: 6000
-    }
+    },
+    // {
+    //     type: 'title',
+    //     text: "Badvel Venkata Srikanth Reddy",
+    //     subtext: "THE DIGITAL LEGACY OF",
+    //     duration: 6000
+    // },
 ];
 
 // --- 3. THE COMPONENT ---
@@ -309,6 +387,16 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
                                     </motion.div>
                                 ))}
                             </div>
+                        </div>
+                    )}
+
+                    {/* --- NEW TYPE: MESSAGE CARD (For Paragraphs) --- */}
+                    {slide.type === 'message' && (
+                        <div className="max-w-2xl text-center px-4">
+                            <p className="font-serif text-xl md:text-3xl text-zinc-200 leading-relaxed font-light whitespace-pre-line tracking-wide">
+                                {slide.text}
+                            </p>
+                            <div className="mt-12 h-px w-12 bg-zinc-800 mx-auto"></div>
                         </div>
                     )}
 
