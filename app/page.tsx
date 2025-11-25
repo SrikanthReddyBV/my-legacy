@@ -5,6 +5,7 @@ import CinematicStory from './components/CinematicStory';
 import TheLedger from './components/TheLedger';
 import TheTagging from './components/TheTagging';
 import MementoMori from './components/MementoMori';
+import VisualNarrative from './components/VisualNarrative';
 import DataPortal from './components/DataPortal';
 import Link from 'next/link';
 
@@ -52,11 +53,12 @@ export default function Home() {
       ) : (
         <div className="animate-in fade-in duration-1000">
           {/* <CinematicStory /> */}
-          <TheLedger />
-          <TheTagging />
+          {/* <TheLedger /> */}
+          {/* <TheTagging /> */}
           {/* <MementoMori /> */}
 
           {/* THE VERIFICATION GRID */}
+          <VisualNarrative />
           <DataPortal />
 
           {/* --- FOOTER --- */}
