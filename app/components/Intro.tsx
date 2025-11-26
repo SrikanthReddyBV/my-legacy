@@ -23,14 +23,14 @@ const creditsScript: Slide[] = [
         // Example: Add author image here if you have it (e.g., /images/hawking.jpg)
         // image: withBase("/images/hawking.jpg"), 
         source: "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",
-        duration: 8000
+        duration: 10000
     },
     {
         type: 'quote',
         text: '"In individuals, insanity is rare; but in groups, parties, nations and epochs, it is the rule."',
         author: "Friedrich Nietzsche",
         source: "",
-        duration: 8000
+        duration: 10000
     },
     // {
     //     type: 'quote',
@@ -39,6 +39,14 @@ const creditsScript: Slide[] = [
     //     source: "https://en.wikipedia.org/wiki/Mimetic_theory",
     //     duration: 10000
     // },
+
+    {
+        type: 'quote',
+        text: "if you kill a cockroach you are a hero, if you kill a butterfly, you are evil. morals have aesthetic criteria.",
+        author: "Unknown",
+        source: "Friedrich Nietzsche",
+        duration: 10000
+    },
     {
         type: 'quote',
         text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
@@ -69,7 +77,7 @@ const creditsScript: Slide[] = [
         author: "OSHO",
         image: withBase("/images/osho.jpg"),
         source: "https://youtu.be/CXlMz1Ja2VM?si=1JlB1NmtkmtMZyd_",
-        duration: 10000
+        duration: 12000
     },
     {
         type: 'quote',
@@ -77,7 +85,7 @@ const creditsScript: Slide[] = [
         author: "OSHO",
         image: withBase("/images/osho.jpg"),
         source: "https://youtu.be/CXlMz1Ja2VM?si=Nme_aQMcbaniIhTU",
-        duration: 14000
+        duration: 18000
     },
     {
         type: 'quote',
@@ -85,7 +93,7 @@ const creditsScript: Slide[] = [
         author: "OSHO",
         image: withBase("/images/osho.jpg"),
         source: "https://youtu.be/CXlMz1Ja2VM?si=Nme_aQMcbaniIhTU",
-        duration: 10000
+        duration: 14000
     },
     {
         type: 'quote',
@@ -93,7 +101,7 @@ const creditsScript: Slide[] = [
         author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
-        duration: 8000
+        duration: 10000
     },
     {
         type: 'quote',
@@ -101,7 +109,7 @@ const creditsScript: Slide[] = [
         author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
-        duration: 12000
+        duration: 16000
     },
     {
         type: 'quote',
@@ -109,7 +117,7 @@ const creditsScript: Slide[] = [
         author: "పూరీ జగన్నాధ్",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
-        duration: 8000
+        duration: 10000
     },
     {
         type: 'quote',
@@ -117,7 +125,7 @@ const creditsScript: Slide[] = [
         author: "Puri Jagannadh",
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
-        duration: 8000
+        duration: 10000
     },
     {
         type: 'faces',
@@ -177,7 +185,7 @@ const creditsScript: Slide[] = [
     {
         type: 'message',
         text: "This is a small attempt to show what is obvious. Which has been said by many great minds before me.",
-        duration: 8000
+        duration: 10000
     },
     {
         type: 'title',
@@ -241,7 +249,7 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black text-white px-6 overflow-hidden select-none"
         >
             <div className="absolute inset-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-80"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-zinc-900 via-black to-black opacity-80"></div>
 
             <AnimatePresence mode='wait'>
                 <motion.div
