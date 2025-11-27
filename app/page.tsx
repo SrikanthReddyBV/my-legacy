@@ -67,6 +67,17 @@ export default function Home() {
             <div className="max-w-4xl mx-auto px-6 text-center">
               <div className="h-px w-24 bg-stone-800 mx-auto mb-16"></div>
               <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mb-20">
+
+                {/* In your Footer Links section */}
+                <Link href="/cinematic-slides" className="group text-center">
+                  <span className="block font-serif text-2xl md:text-3xl text-stone-500 group-hover:text-white transition-colors italic">
+                    The Reel
+                  </span>
+                  <span className="block mt-2 font-mono text-[10px] text-stone-700 uppercase tracking-[0.3em]">
+                    Visual Stream
+                  </span>
+                </Link>
+
                 <Link href="/about" className="group text-center">
                   <span className="block font-serif text-2xl md:text-3xl text-stone-500 group-hover:text-white transition-colors duration-500 italic">
                     The Architect
