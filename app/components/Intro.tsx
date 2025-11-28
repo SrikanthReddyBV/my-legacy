@@ -42,7 +42,7 @@ const creditsScript: Slide[] = [
 
     {
         type: 'quote',
-        text: "if you kill a cockroach you are a hero, if you kill a butterfly, you are evil. morals have aesthetic criteria.",
+        text: "If you kill a cockroach you are a hero, if you kill a butterfly, you are evil. morals have aesthetic criteria.",
         author: "Unknown",
         source: "Friedrich Nietzsche",
         duration: 10000
@@ -126,6 +126,22 @@ const creditsScript: Slide[] = [
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/t7_sXiHWpW8?si=cOyUJOBE_v3UjDrk",
         duration: 10000
+    },
+    {
+        type: 'quote',
+        text: "మాకెలాగూ బుద్ధి లేక పిల్లలను కన్నాం కనీసం మీరన్నా ఆపేయండి",
+        author: "పూరీ జగన్నాధ్",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/Y1T_HlJRHus?si=W0_1H17SK6vbpNET",
+        duration: 10000
+    },
+    {
+        type: 'quote',
+        text: "పెళ్లి చేసుకోవడం తప్పని ఏ మతమూ చెప్పదు. చెప్తే మతం ఎగిరిపోద్ది. పెళ్లి చేసుకోక పోతే ప్రీస్ట్ కు పనుండదు. పూజారి కట్ అయితే పూజలు, వ్రతాలు కట్. గుడికెళ్ళే పనుండదు. రిలీజియన్ కట్. ఫైనల్ గా యు లూజ్ కనెక్షన్ విత్ గాడ్. అందుకే వాళ్ళు పెళ్లి గురించి నిజాలు చెప్పరు.",
+        author: "పూరీ జగన్నాధ్",
+        image: withBase("/images/puri.jpg"),
+        source: "https://youtu.be/Y1T_HlJRHus?si=ZEB8qjhbnIRCz48N",
+        duration: 16000
     },
     {
         type: 'faces',
@@ -346,12 +362,14 @@ export default function Intro({ onFinish }: { onFinish: () => void }) {
 
                                         {person.url ? (
                                             <a href={person.url} target="_blank" rel="noopener noreferrer" className="group-hover:text-white transition-colors">
-                                                <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide flex items-center justify-center gap-2">
+                                                <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide flex items-center justify-center gap-2 uppercase">
                                                     {person.name}
                                                 </h3>
                                             </a>
                                         ) : (
-                                            <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide">{person.name}</h3>
+                                            <h3 className="font-serif text-lg md:text-2xl text-zinc-200 tracking-wide flex items-center justify-center gap-2 uppercase">
+                                                {person.name}
+                                            </h3>
                                         )}
 
                                         {/* VISIBILITY FIX: text-zinc-400 */}

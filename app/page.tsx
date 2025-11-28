@@ -73,7 +73,7 @@ export default function Home() {
                   <span className="block font-serif text-2xl md:text-3xl text-stone-500 group-hover:text-white transition-colors italic">
                     The Reel
                   </span>
-                  <span className="block mt-2 font-mono text-[10px] text-stone-700 uppercase tracking-[0.3em]">
+                  <span className="block mt-2 font-mono text-[10px] text-stone-700 uppercase tracking-[0.3em]  group-hover:text-stone-400 transition-colors">
                     Visual Stream
                   </span>
                 </Link>
