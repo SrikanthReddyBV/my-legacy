@@ -40,13 +40,13 @@ const creditsScript: Slide[] = [
     //     duration: 10000
     // },
 
-    {
-        type: 'quote',
-        text: "If you kill a cockroach you are a hero, if you kill a butterfly, you are evil. morals have aesthetic criteria.",
-        author: "Unknown",
-        source: "Friedrich Nietzsche",
-        duration: 10000
-    },
+    // {
+    //     type: 'quote',
+    //     text: "If you kill a cockroach you are a hero, if you kill a butterfly, you are evil. morals have aesthetic criteria.",
+    //     author: "Unknown",
+    //     source: "Friedrich Nietzsche",
+    //     duration: 10000
+    // },
     {
         type: 'quote',
         text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
@@ -144,6 +144,14 @@ const creditsScript: Slide[] = [
         duration: 16000
     },
     {
+        type: 'quote',
+        text: "అడగకెప్పుడూ యెవరినైనా సాయమూ న్యాయమూ",
+        author: "ఎస్ ఎస్ రాజమౌళి",
+        image: withBase("/images/ssr.jpg"),
+        source: "https://www.youtube.com/shorts/ItJoqIE2BWM",
+        duration: 10000
+    },
+    {
         type: 'faces',
         title: "Thanks for the Engineering Degree",
         duration: 8000,
@@ -187,15 +195,23 @@ const creditsScript: Slide[] = [
         ]
     },
     {
+        type: 'faces',
+        title: "Well...",
+        duration: 8000,
+        people: [
+            { name: "Sri Venkateswara Swami", role: "For whatever", image: withBase("/images/tirumala.jpg"), url: "https://en.wikipedia.org/wiki/Venkateswara_Temple,_Tirumala" },
+        ]
+    },
+    {
         type: 'list',
         title: "Thanks",
         duration: 10000,
         items: [
-            { name: "Pankaj Kumar Agarwal", url: "https://www.linkedin.com/in/pankaj-agarwal-723a686/" },
+            { name: "Pankaj Kumar Agarwal", url: "https://www.linkedin.com/in/pankaj-kumar-agarwal-7030a8127/" },
             { name: "Rafi Ali Khan", url: "https://www.linkedin.com/in/rafialikhan/" },
-            { name: "Shyam Sundar M", url: "https://www.linkedin.com/in/shyamsundarm/" },
-            { name: "Sankaranarayanan (Sankar) Viswanathan", url: "https://www.linkedin.com/in/sankarviswanathan/" },
-            { name: "Bhavish Aggarwal", url: "https://twitter.com/bhash" }
+            { name: "Shyam Sundar M", url: "https://www.linkedin.com/in/shyamms/" },
+            { name: "Sankaranarayanan (Sankar) Viswanathan", url: "https://www.linkedin.com/in/kvsankar/" },
+            { name: "Bhavish Aggarwal", url: "https://www.linkedin.com/in/bvsr/" }
         ]
     },
     {
