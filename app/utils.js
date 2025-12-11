@@ -1,1 +1,1 @@
-export const withBase = (path) => process.env.NODE_ENV === 'production' ? `/my-legacy${path}` : path;
+export const withBase = (path) => process.env.NODE_ENV === 'production' ? path : path;

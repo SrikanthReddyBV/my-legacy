@@ -7,7 +7,7 @@ import { ArrowLeft, BookOpen, Film, MapPin, Terminal, Plus, Minus, PlayCircle, H
 import { title } from 'process';
 
 // --- IMAGE HELPER ---
-const p = (path: string) => process.env.NODE_ENV === 'production' ? `/my-legacy${path}` : path;
+const p = (path: string) => process.env.NODE_ENV === 'production' ? path : path;
 
 // --- DATA SECTION ---
 
