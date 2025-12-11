@@ -8,11 +8,15 @@ import MementoMori from './components/MementoMori';
 import VisualNarrative from './components/VisualNarrative';
 import DataPortal from './components/DataPortal';
 import Link from 'next/link';
+import { ReactLenis } from "lenis/react";
 
 // New Imports
 import TimeLock from './components/TimeLock';
 import Disclaimer from './components/Disclaimer';
 import { LAUNCH_DATE } from './config';
+import Cinematic3DStory from './components/Cinematic3DStory';
+import TheVisualEvidence from './components/TheVisualEvidence';
+import TheDescriptiveStory from './components/TheDescriptiveStory';
 
 export default function Home() {
   // STATES
@@ -47,6 +51,7 @@ export default function Home() {
 
   // PHASE 3: INTRO & MAIN SITE
   return (
+    // <ReactLenis>
     <main className="bg-stone-950 min-h-screen text-white">
       {!introComplete ? (
         <Intro onFinish={() => setIntroComplete(true)} />
@@ -58,17 +63,22 @@ export default function Home() {
           {/* <MementoMori /> */}
 
           {/* THE VERIFICATION GRID */}
-          <VisualNarrative />
-          <DataPortal />
+          {/* <VisualNarrative /> */}
+          {/* <TheVisualEvidence /> */}
+          <TheDescriptiveStory />
+
+          {/* <Cinematic3DStory /> */}
+
+          {/* <DataPortal /> */}
 
           {/* --- FOOTER --- */}
-          <footer className="py-24 bg-black relative border-t border-stone-900">
+
+          {/* <footer className="py-24 bg-black relative border-t border-stone-900">
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay pointer-events-none"></div>
             <div className="max-w-4xl mx-auto px-6 text-center">
               <div className="h-px w-24 bg-stone-800 mx-auto mb-16"></div>
               <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 mb-20">
 
-                {/* In your Footer Links section */}
                 <Link href="/cinematic-slides" className="group text-center">
                   <span className="block font-serif text-2xl md:text-3xl text-stone-500 group-hover:text-white transition-colors italic">
                     The Reel
@@ -102,9 +112,11 @@ export default function Home() {
                 EST. 2025
               </p>
             </div>
-          </footer>
+          </footer> */}
+
         </div>
       )}
     </main>
+    // </ReactLenis>
   );
 }

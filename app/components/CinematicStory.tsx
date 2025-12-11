@@ -1,194 +1,179 @@
 'use client';
-import { motion, useScroll } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
-import { withBase } from '../utils';
 
-// --- THE NARRATIVE SCRIPT ---
-const scenes = [
-    // 1. THE OBSERVATION
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Pause, RefreshCw } from 'lucide-react';
+
+// --- 1. THE SCRIPT (With Timing) ---
+const movieScript = [
     {
-        id: "sheep",
-        image: withBase("/images/sheep.jpg"),
-        text: "The Herd.",
-        subtext: "You know this is a sheep. But how do you know which is which? Do you show any partiality? Any bias? To you, it is just a number."
+        id: 1,
+        img: "https://images.unsplash.com/photo-1484557985045-6f550bf43735?q=80&w=2694&auto=format&fit=crop", // Sheep
+        text: "This is a sheep.",
+        sub: "It eats. It sleeps. It follows.",
+        duration: 5000 // 5 seconds
     },
-
-    // 2. THE PROBLEM (THE LOST BUFFALO)
     {
-        id: "buffalo",
-        image: withBase("/images/buffaloes.jpg"),
-        text: "The Crisis.",
-        subtext: "Suppose you have 2 buffaloes and you lose them. How do you ask around? 'Have you seen a black buffalo?' They all look the same. The police cannot help you without an identifier."
+        id: 2,
+        img: "https://images.unsplash.com/photo-1504566728033-6c84307db113?q=80&w=2600&auto=format&fit=crop", // Buffalo
+        text: "This is a buffalo.",
+        sub: "Stronger. Bigger. But still... a follower.",
+        duration: 5000
     },
-
-    // 3. THE SOLUTION (OWNERSHIP)
     {
-        id: "tag",
-        image: withBase("/images/ear-tag.jpg"), // Image of a cow with a yellow ear tag
-        text: "The Ear Tag.",
-        subtext: "So we invented the Cattle Census. The yellow tag. Now, it is not just a buffalo; it is Asset #4092 linked to an Owner. We did this for ownership."
+        id: 3,
+        img: "https://images.unsplash.com/photo-1534981197940-593644a49652?q=80&w=2752&auto=format&fit=crop", // Herd
+        text: "This is a herd.",
+        sub: "Individual fear creates collective safety.",
+        duration: 6000
     },
-
-    // 4. THE STRAY VS DOMESTIC
     {
-        id: "stray",
-        image: withBase("/images/stray.jpg"), // Dark forest or stray animal
-        text: "The Wild.",
-        subtext: "A stray buffalo should live on its own in the jungle. If it is useful to you, you extend protection. You feed it, guard it, and eventually kill it in a 'humanitarian' way."
+        id: 4,
+        img: "https://images.unsplash.com/photo-1473183579198-5c4d241772f7?q=80&w=2669&auto=format&fit=crop", // Shepherd
+        text: "This is the Shepherd.",
+        sub: "He loves the sheep. Because he loves the wool. And the meat.",
+        duration: 7000
     },
-
-    // 5. THE MACHINES
     {
-        id: "cars",
-        image: withBase("/images/white-cars.jpg"), // Traffic with many white cars
-        text: "The Assembly Line.",
-        subtext: "Look at the machines. White cars. Black bikes. They are mass-produced clones. To the naked eye, there is no difference."
+        id: 5,
+        img: "https://images.unsplash.com/photo-1542282946-7788195861b7?q=80&w=2670&auto=format&fit=crop", // Human Uniforms
+        text: "Now... look at us.",
+        sub: "Uniforms. Idols. Flags.",
+        duration: 6000
     },
-
-    // 6. THE RTO (MACHINE IDENTITY)
     {
-        id: "plate",
-        image: withBase("/images/number-plate.jpg"), // Close up of license plate
-        text: "The Registration.",
-        subtext: "To claim ownership, we attach the machine to the RTO. A State Code. A Number. Now, if it is lost, we know exactly who it belongs to."
-    },
-
-    // 7. THE HUMAN CONTEXT
-    {
-        id: "tribe",
-        image: withBase("/images/tribe.jpg"), // Tribal person or deep nature
-        text: "The Intelligent Species.",
-        subtext: "If you are born human, you are the apex. If you live alone in the wild like a tribe, fine. We treat you as wildlife. We don't bother you."
-    },
-
-    // 8. THE SOCIETY (RELIGION/NATIONALITY)
-    {
-        id: "crowd",
-        image: withBase("/images/crowd.jpg"),
-        text: "The Society.",
-        subtext: "But if you come into human society, we must identify you. Which religion? Which nationality? We need systems to know which group claims you."
-    },
-
-    // 9. THE INSTITUTION (SCHOOL/OFFICE)
-    {
-        id: "school",
-        image: withBase("/images/school-uniforms.jpg"),
-        text: "The Responsibility.",
-        subtext: "A kid in a uniform belongs to that school; it is their responsibility. An employee belongs to that company. You are always mapped to an owner."
+        id: 6,
+        img: "https://images.unsplash.com/photo-1531233633649-0d195f190d79?q=80&w=2674&auto=format&fit=crop", // Crowd
+        text: "We are just a herd with better costumes.",
+        sub: "The fence is in your mind.",
+        duration: 8000
     }
 ];
 
-export default function CinematicStory() {
-    const [activeScene, setActiveScene] = useState(0);
+export default function CinemaMode() {
+    const [index, setIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false); // Start paused or true to auto-start
+    const [hasEnded, setHasEnded] = useState(false);
+
+    // --- Auto-Advance Logic ---
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+
+        if (isPlaying && !hasEnded) {
+            const currentDuration = movieScript[index].duration;
+
+            timer = setTimeout(() => {
+                if (index < movieScript.length - 1) {
+                    setIndex((prev) => prev + 1);
+                } else {
+                    setIsPlaying(false);
+                    setHasEnded(true);
+                }
+            }, currentDuration);
+        }
+
+        return () => clearTimeout(timer);
+    }, [index, isPlaying, hasEnded]);
+
+    // Restart Handler
+    const handleRestart = () => {
+        setIndex(0);
+        setHasEnded(false);
+        setIsPlaying(true);
+    };
+
+    const currentScene = movieScript[index];
 
     return (
-        <div className="bg-black font-sans">
+        <div className="fixed inset-0 z-50 bg-black overflow-hidden flex flex-col items-center justify-center">
 
-            {/* 1. THE STICKY BACKGROUND LAYER */}
-            <div className="fixed inset-0 z-0 w-full h-full">
-                {scenes.map((scene, index) => (
+            {/* --- LAYER 1: THE MOVIE SCREEN --- */}
+            <div className="relative w-full h-full md:w-[90%] md:h-[80%] overflow-hidden bg-black shadow-2xl">
+                <AnimatePresence mode="wait">
                     <motion.div
-                        key={scene.id}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: index === activeScene ? 1 : 0 }}
-                        transition={{ duration: 1.2, ease: "easeInOut" }} // Smooth cross-fade
+                        key={currentScene.id}
+                        initial={{ opacity: 0, scale: 1.1 }}
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            transition: { duration: 2, ease: "easeOut" } // Fade in speed
+                        }}
+                        exit={{ opacity: 0, transition: { duration: 1 } }}
                         className="absolute inset-0"
                     >
-                        <div className="relative w-full h-full">
-                            <Image
-                                src={scene.image}
-                                alt={scene.text}
-                                fill
-                                className="object-cover grayscale brightness-[0.3] contrast-125"
-                                priority={index === 0}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-90"></div>
-                            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-15 mix-blend-overlay"></div>
-                        </div>
+                        {/* The Image with "Ken Burns" Slow Zoom Effect */}
+                        <motion.div
+                            className="w-full h-full bg-cover bg-center"
+                            style={{ backgroundImage: `url(${currentScene.img})` }}
+                            animate={{ scale: [1, 1.05] }} // Subtle zoom during the slide
+                            transition={{ duration: currentScene.duration / 1000, ease: "linear" }}
+                        />
+
+                        {/* Dark Gradient Overlay for Text Readability */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                     </motion.div>
-                ))}
-            </div>
+                </AnimatePresence>
 
-            {/* 2. THE SCROLLABLE TEXT TRIGGER LAYER */}
-            <div className="relative z-10">
-                {scenes.map((scene, index) => (
-                    <SceneTrigger
-                        key={scene.id}
-                        index={index}
-                        data={scene}
-                        onEnter={() => setActiveScene(index)}
-                    />
-                ))}
-
-                {/* 3. FINAL LINK TO DATA */}
-                <div className="h-[80vh] flex flex-col items-center justify-center">
-                    <p className="text-stone-500 font-mono text-xs uppercase tracking-[0.4em] mb-8 animate-pulse">
-                        End of Narrative
-                    </p>
-                    <Link href="/stats" className="group relative px-10 py-5 bg-stone-950/80 backdrop-blur-xl border border-stone-800 rounded-full overflow-hidden transition-all hover:border-stone-500">
-                        <div className="relative z-10 flex items-center gap-4 text-stone-300 group-hover:text-white transition-colors">
-                            <span className="font-mono text-xs uppercase tracking-widest">Verify The Data</span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </div>
-                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </Link>
+                {/* --- LAYER 2: SUBTITLES / TEXT --- */}
+                <div className="absolute bottom-10 left-0 w-full text-center px-4 pb-8 md:pb-12">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={currentScene.text}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ delay: 0.5, duration: 1 }}
+                        >
+                            <h2 className="font-serif text-3xl md:text-5xl text-white mb-4 drop-shadow-md">
+                                {currentScene.text}
+                            </h2>
+                            <p className="font-sans text-sm md:text-lg text-zinc-400 uppercase tracking-[0.2em]">
+                                {currentScene.sub}
+                            </p>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
+
+                {/* --- LAYER 3: GRAIN OVERLAY (Cinematic Feel) --- */}
+                <div className="absolute inset-0 opacity-15 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
             </div>
-        </div>
-    );
-}
 
-// --- HELPER COMPONENT ---
-function SceneTrigger({ data, index, onEnter }: { data: any, index: number, onEnter: () => void }) {
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start center", "end center"]
-    });
+            {/* --- CONTROLS --- */}
+            {/* Hidden during play, visible on hover or if paused */}
+            <div className="absolute bottom-6 flex gap-6 z-50">
+                {!hasEnded && (
+                    <button
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className="text-zinc-500 hover:text-white transition-colors"
+                    >
+                        {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+                    </button>
+                )}
 
-    useEffect(() => {
-        const unsubscribe = scrollYProgress.on("change", (v) => {
-            if (v > 0 && v < 1) {
-                onEnter();
-            }
-        });
-        return () => unsubscribe();
-    }, [scrollYProgress, onEnter]);
+                {hasEnded && (
+                    <button
+                        onClick={handleRestart}
+                        className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors uppercase tracking-widest text-xs"
+                    >
+                        <RefreshCw size={16} /> Replay Story
+                    </button>
+                )}
+            </div>
 
-    return (
-        <div ref={ref} className="h-[150vh] flex items-center justify-center">
-            <div className="max-w-4xl px-6 text-center">
+            {/* --- LETTERBOX BARS (Optional: Covers top/bottom if on huge screens) --- */}
+            <div className="hidden md:block absolute top-0 w-full h-[10%] bg-black z-40"></div>
+            <div className="hidden md:block absolute bottom-0 w-full h-[10%] bg-black z-40"></div>
+
+            {/* --- PROGRESS BAR (Optional) --- */}
+            {isPlaying && (
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    className="font-mono text-xs text-stone-600 mb-6 uppercase tracking-[0.5em]"
-                >
-                    Phase {String(index + 1).padStart(2, '0')}
-                </motion.div>
-
-                <motion.h2
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ margin: "-20%" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="font-serif text-5xl md:text-8xl text-stone-100 mb-10 text-glow uppercase leading-none tracking-tight"
-                >
-                    {data.text}
-                </motion.h2>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ margin: "-20%" }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    className="font-serif text-xl md:text-3xl text-stone-400 font-light italic leading-relaxed max-w-2xl mx-auto"
-                >
-                    "{data.subtext}"
-                </motion.p>
-            </div>
+                    key={index}
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: currentScene.duration / 1000, ease: "linear" }}
+                    className="absolute bottom-0 left-0 h-1 bg-red-700 z-50"
+                />
+            )}
         </div>
     );
 }

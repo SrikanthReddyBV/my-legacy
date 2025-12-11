@@ -16,20 +16,21 @@ type Slide =
 
 // --- 2. YOUR SCRIPT ---
 const creditsScript: Slide[] = [
-    {
-        type: 'quote',
-        text: '"We are just an advanced breed of monkeys on a minor planet of a very average star."',
-        author: "Stephen Hawking",
-        // Example: Add author image here if you have it (e.g., /images/hawking.jpg)
-        // image: withBase("/images/hawking.jpg"), 
-        source: "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",
-        duration: 10000
-    },
+    // {
+    //     type: 'quote',
+    //     text: '"We are just an advanced breed of monkeys on a minor planet of a very average star."',
+    //     author: "Stephen Hawking",
+    //     // Example: Add author image here if you have it (e.g., /images/hawking.jpg)
+    //     // image: withBase("/images/hawking.jpg"), 
+    //     source: "https://en.wikipedia.org/wiki/A_Brief_History_of_Time",
+    //     duration: 10000
+    // },
     {
         type: 'quote',
         text: '"In individuals, insanity is rare; but in groups, parties, nations and epochs, it is the rule."',
         author: "Friedrich Nietzsche",
-        source: "",
+        image: withBase("/images/nietzsche.jpg"),
+        source: "https://www.goodreads.com/quotes/2137-in-individuals-insanity-is-rare-but-in-groups-parties-nations",
         duration: 10000
     },
     // {
@@ -47,22 +48,14 @@ const creditsScript: Slide[] = [
     //     source: "Friedrich Nietzsche",
     //     duration: 10000
     // },
-    {
-        type: 'quote',
-        text: '"ఏ దేశ చరిత్ర చూసినా ఏమున్నది గర్వకారణం? నర జాతి చరిత్ర సమస్తం పరపీడన పరాయణత్వం!"',
-        author: "శ్రీ శ్రీ",
-        image: withBase("/images/srisri.jpeg"),
-        source: "https://en.wikipedia.org/wiki/Mahaprasthanam",
-        duration: 8000
-    },
-    {
-        type: 'quote',
-        text: '"All of these years of my service towards mankind did not bring me nothing but assaults and humiliations."',
-        author: "Nikola Tesla",
-        image: withBase("/images/tesla.jpeg"),
-        source: "https://en.wikipedia.org/wiki/Nikola_Tesla",
-        duration: 8000
-    },
+    // {
+    //     type: 'quote',
+    //     text: '"All of these years of my service towards mankind did not bring me nothing but assaults and humiliations."',
+    //     author: "Nikola Tesla",
+    //     image: withBase("/images/tesla.jpeg"),
+    //     source: "https://en.wikipedia.org/wiki/Nikola_Tesla",
+    //     duration: 8000
+    // },
     {
         type: 'quote',
         text: '"Freedom to me is the ultimate value. There is nothing higher than freedom"',
@@ -94,6 +87,14 @@ const creditsScript: Slide[] = [
         image: withBase("/images/osho.jpg"),
         source: "https://youtu.be/CXlMz1Ja2VM?si=Nme_aQMcbaniIhTU",
         duration: 14000
+    },
+    {
+        type: 'quote',
+        text: "Nobody Allows Anybody to Be Just Himself",
+        author: "OSHO",
+        image: withBase("/images/osho.jpg"),
+        source: "https://youtu.be/UngV-qwNkW0?si=TT9Skaa28HApx-zm",
+        duration: 8000
     },
     {
         type: 'quote',
@@ -134,14 +135,6 @@ const creditsScript: Slide[] = [
         image: withBase("/images/puri.jpg"),
         source: "https://youtu.be/Y1T_HlJRHus?si=W0_1H17SK6vbpNET",
         duration: 10000
-    },
-    {
-        type: 'quote',
-        text: "పెళ్లి చేసుకోవడం తప్పని ఏ మతమూ చెప్పదు. చెప్తే మతం ఎగిరిపోద్ది. పెళ్లి చేసుకోక పోతే ప్రీస్ట్ కు పనుండదు. పూజారి కట్ అయితే పూజలు, వ్రతాలు కట్. గుడికెళ్ళే పనుండదు. రిలీజియన్ కట్. ఫైనల్ గా యు లూజ్ కనెక్షన్ విత్ గాడ్. అందుకే వాళ్ళు పెళ్లి గురించి నిజాలు చెప్పరు.",
-        author: "పూరీ జగన్నాధ్",
-        image: withBase("/images/puri.jpg"),
-        source: "https://youtu.be/Y1T_HlJRHus?si=ZEB8qjhbnIRCz48N",
-        duration: 16000
     },
     {
         type: 'quote',
@@ -191,7 +184,7 @@ const creditsScript: Slide[] = [
         title: "And Ofcourse",
         duration: 8000,
         people: [
-            { name: "OSHO", role: "For being OSHO", image: withBase("/images/osho.jpg"), url: "https://en.wikipedia.org/wiki/Rajneesh" },
+            { name: "OSHO", role: "", image: withBase("/images/osho.jpg"), url: "https://en.wikipedia.org/wiki/Rajneesh" },
         ]
     },
     {
@@ -199,7 +192,7 @@ const creditsScript: Slide[] = [
         title: "Well...",
         duration: 8000,
         people: [
-            { name: "Sri Venkateswara Swami", role: "For whatever", image: withBase("/images/tirumala.jpg"), url: "https://en.wikipedia.org/wiki/Venkateswara_Temple,_Tirumala" },
+            { name: "Sri Venkateswara Swami", role: "Tirumala", image: withBase("/images/tirumala.jpg"), url: "https://en.wikipedia.org/wiki/Venkateswara_Temple,_Tirumala" },
         ]
     },
     {
@@ -224,12 +217,12 @@ const creditsScript: Slide[] = [
         text: "Welcome",
         duration: 6000
     },
-    // {
-    //     type: 'title',
-    //     text: "Badvel Venkata Srikanth Reddy",
-    //     subtext: "THE DIGITAL LEGACY OF",
-    //     duration: 6000
-    // },
+    {
+        type: 'title',
+        text: "THE THEORY OF EVERYTHING",
+        subtext: "TO",
+        duration: 6000
+    },
 ];
 
 // --- 3. THE COMPONENT ---

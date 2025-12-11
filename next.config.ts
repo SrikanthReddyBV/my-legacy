@@ -8,7 +8,7 @@ const nextConfig = {
   },
   // Only use the subfolder path on GitHub (Production)
   // On Localhost, keep it at the root
-  basePath: isProd ? "/my-legacy" : undefined,
+  // basePath: isProd ? "/my-legacy" : undefined,
 };
 
 export default nextConfig;
